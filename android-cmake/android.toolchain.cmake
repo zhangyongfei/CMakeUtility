@@ -955,7 +955,7 @@ link_directories( ${ANDROID_SYSTEM_LIB_DIRS} )
 
 # finish flags
 set( ANDROID_CXX_FLAGS    "${ANDROID_CXX_FLAGS}"    CACHE INTERNAL "Extra Android compiler flags")
-set( ANDROID_LINKER_FLAGS "${ANDROID_LINKER_FLAGS}" CACHE INTERNAL "Extra Android linker flags")
+set( ANDROID_LINKER_FLAGS "--sysroot=\"${ANDROID_SYSROOT}\" ${ANDROID_LINKER_FLAGS}" CACHE INTERNAL "Extra Android linker flags")
 set( CMAKE_CXX_FLAGS           "${ANDROID_CXX_FLAGS} ${CMAKE_CXX_FLAGS}" )
 set( CMAKE_C_FLAGS             "${ANDROID_CXX_FLAGS} ${CMAKE_C_FLAGS}" )
 if( MIPS AND BUILD_WITH_ANDROID_NDK )

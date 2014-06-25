@@ -20,7 +20,7 @@ if [ "$?" != "0" ]; then
 fi
 
 cd ${PrjDir}/build
-cmake -DANDROID=false -DIOS=false -DCMAKE_TOOLCHAIN_FILE=${ToolsDir}/CMakeUtility/CMakeUtility.cmake -DTOOLS_DIR=${ToolsDir}/CMakeUtility ..
+cmake -DPRJOUTPUT=%PrjOutput% -DANDROID=false -DIOS=false -DCMAKE_TOOLCHAIN_FILE=${ToolsDir}/CMakeUtility/CMakeUtility.cmake -DTOOLS_DIR=${ToolsDir}/CMakeUtility ..
 if [ "$?" != "0" ]; then
     exit $?
 fi

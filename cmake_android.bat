@@ -30,11 +30,14 @@ md %PrjDir%\androidbuild
 :cmakeprj
 cd %PrjDir%\androidbuild
 SET ToolsDir=%ToolsDir:\=/%
-cmake -G"MinGW Makefiles" -DANDROID=true -DIOS=false -DCMAKE_TOOLCHAIN_FILE=%ToolsDir%android-cmake/android.toolchain.cmake -DTOOLS_DIR=%ToolsDir%CMakeUtility -DCMAKE_MAKE_PROGRAM="%ANDROID_NDK%\prebuilt\windows\bin\make.exe" -DANDROID_ABI=%ANDROID_ABI% -DANDROID_NATIVE_API_LEVEL=%ANDROID_NATIVE_API_LEVEL% .. && goto makeprj
+SET PrjOutput=%PrjDir%\androidbuild
+SET PrjOutput=%PrjOutput:\=/%
+cmake -G"MinGW Makefiles" -DPRJOUTPUT=%PrjOutput% -DANDROID=true -DIOS=false -DCMAKE_TOOLCHAIN_FILE=%ToolsDir%android-cmake/android.toolchain.cmake -DTOOLS_DIR=%ToolsDir%CMakeUtility -DCMAKE_MAKE_PROGRAM="%ANDROID_NDK%\prebuilt\windows\bin\make.exe" -DANDROID_ABI=%ANDROID_ABI% -DANDROID_NATIVE_API_LEVEL=%ANDROID_NATIVE_API_LEVEL% .. && goto makeprj
 goto end
 
 :makeprj
 "%ANDROID_NDK%\prebuilt\windows\bin\make.exe"
+cd %CurDir%
 
 :end
 cd %CurDir%
