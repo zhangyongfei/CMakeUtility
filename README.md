@@ -2,4 +2,15 @@ CMakeUtility
 ============
 
 CMake脚本的二次封装，方便构建工程
-下载CMakeUtility文件夹，设置CMAKE_MODULE_PATH为CMakeUtility文件夹的所在路径，使用INCLUDE命令引用CMakeUtility
+windows:
+cmake_win32.bat
+
+linux
+cmake_linux.bat
+
+android on windows:
+cmake_android.bat
+
+android on linux:
+cmake_android.sh
+

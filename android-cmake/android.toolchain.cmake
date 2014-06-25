@@ -191,6 +191,8 @@
 
 cmake_minimum_required( VERSION 2.6.3 )
 
+SET(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${TOOLS_DIR})
+
 if( DEFINED CMAKE_CROSSCOMPILING )
  # subsequent toolchain loading is not really needed
  return()
@@ -315,7 +317,7 @@ macro( __DETECT_TOOLCHAIN_MACHINE_NAME _var _root )
  __LIST_FILTER( __gccExePath "bin/[.].*-gcc${TOOL_OS_SUFFIX}$" )
  list( LENGTH __gccExePath __gccExePathsCount )
  if( NOT __gccExePathsCount EQUAL 1 )
-  message( WARNING "Could not uniquely determine machine name for compiler from ${_root}." )
+  #message( WARNING "Could not uniquely determine machine name for compiler from ${_root}." )
   set( ${_var} "" )
  else()
   get_filename_component( __gccExeName "${__gccExePath}" NAME_WE )
@@ -514,7 +516,7 @@ __INIT_VARIABLE( ANDROID_ABI OBSOLETE_ARM_TARGET OBSOLETE_ARM_TARGETS VALUES ${A
 # verify that target ABI is supported
 list( FIND ANDROID_SUPPORTED_ABIS "${ANDROID_ABI}" __androidAbiIdx )
 if( __androidAbiIdx EQUAL -1 )
- string( REPLACE ";" "\", \"", PRINTABLE_ANDROID_SUPPORTED_ABIS  "${ANDROID_SUPPORTED_ABIS}" )
+ string( REPLACE ";" "\", \"" PRINTABLE_ANDROID_SUPPORTED_ABIS  "${ANDROID_SUPPORTED_ABIS}" )
  message( FATAL_ERROR "Specified ANDROID_ABI = \"${ANDROID_ABI}\" is not supported by this cmake toolchain or your NDK/toolchain.
    Supported values are: \"${PRINTABLE_ANDROID_SUPPORTED_ABIS}\"
    " )
@@ -669,7 +671,7 @@ if( BUILD_WITH_STANDALONE_TOOLCHAIN )
  set( ANDROID_SYSROOT "${ANDROID_STANDALONE_TOOLCHAIN}/sysroot" )
  set( __stlLibPath "${ANDROID_STANDALONE_TOOLCHAIN}/${ANDROID_TOOLCHAIN_MACHINE_NAME}/lib" )
 endif()
-if( BUILD_WITH_ANDROID_NDK )
+if( BUILD_WITH_ANDROID_NDK ) 
  set( ANDROID_TOOLCHAIN_ROOT "${ANDROID_NDK}/toolchains/${ANDROID_TOOLCHAIN_NAME}/prebuilt/${ANDROID_NDK_HOST_SYSTEM_NAME}" )
  set( ANDROID_SYSROOT "${ANDROID_NDK}/platforms/android-${ANDROID_NATIVE_API_LEVEL}/arch-${ANDROID_ARCH_NAME}" )
  if( ANDROID_USE_STLPORT )
