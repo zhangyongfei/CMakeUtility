@@ -29,7 +29,7 @@ if [ "$?" != "0" ]; then
 fi
 
 cd ${PrjDir}/build
-cmake -G"MinGW Makefiles" -DANDROID=true -DCMAKE_TOOLCHAIN_FILE=%ToolsDir%android-cmake/android.toolchain.cmake -DTOOLS_DIR=%ToolsDir%CMakeUtility -DCMAKE_MAKE_PROGRAM="%ANDROID_NDK%\prebuilt\windows\bin\make.exe" -DANDROID_ABI=%ANDROID_ABI% -DANDROID_NATIVE_API_LEVEL=%ANDROID_NATIVE_API_LEVEL% ..
+cmake -G"MinGW Makefiles" -DANDROID=true -DIOS=false -DCMAKE_TOOLCHAIN_FILE=%ToolsDir%android-cmake/android.toolchain.cmake -DTOOLS_DIR=%ToolsDir%CMakeUtility -DCMAKE_MAKE_PROGRAM="%ANDROID_NDK%\prebuilt\windows\bin\make.exe" -DANDROID_ABI=%ANDROID_ABI% -DANDROID_NATIVE_API_LEVEL=%ANDROID_NATIVE_API_LEVEL% ..
 if [ "$?" != "0" ]; then
     exit $?
 fi
